@@ -71,6 +71,7 @@ function create_block_countdown_block_init() {
 		'essential-blocks-countdown-frontend',
 		plugins_url($frontend_js, __FILE__),
 		array( "jquery","wp-editor"),
+		$script_asset['version'],
 		true
 	);
 
