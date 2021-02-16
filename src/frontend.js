@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			var now = new Date().getTime();
 			var time = new Date(date).getTime();
 			// var currentUtcOffset = time.getTimezoneOffset() * 60 * 1000;
+			//works
 			var timer = Math.floor( ( time - now ) / 1000 );
 
 			var days = 0;
@@ -30,13 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				days = Math.floor(timer / oneDay);
 				timer -= days * oneDay;
 				hours = Math.floor(timer / oneHour) % 24;
-				console.log(timer + "/" + oneHour + " % 24");
+				// console.log(timer + "/" + oneHour + " % 24");
 				timer -= hours * oneHour;
 				minutes = Math.floor(timer / oneMinute) % 60;
-				console.log(timer + "/" + oneMinute + " % 60");
+				// console.log(timer + "/" + oneMinute + " % 60");
 				timer -= minutes * oneMinute;
 				seconds = Math.floor(timer / oneSecond) % 60;
-				console.log(timer + "/" + oneSecond + " % 60");
+				// console.log(timer + "/" + oneSecond + " % 60");
 			}
 
 			// Get values from html

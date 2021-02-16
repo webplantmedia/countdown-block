@@ -2377,7 +2377,8 @@ var Inspector = function Inspector(_ref) {
 
     var counter = function counter() {
       var now = new Date().getTime();
-      var currentUtcOffset = moment__WEBPACK_IMPORTED_MODULE_3___default()(date).utcOffset() * 60 * 1000;
+      var currentUtcOffset = moment__WEBPACK_IMPORTED_MODULE_3___default()(date).utcOffset() * 60 * 1000; //works
+
       var timer = Math.floor((time - now) / 1000);
 
       if (time < now) {

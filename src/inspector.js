@@ -125,6 +125,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 			let now = new Date().getTime();
 			let currentUtcOffset = moment(date).utcOffset() * 60 * 1000;
 
+			//works
 			let timer = Math.floor( ( time - now ) / 1000 );
 
 			if (time < now) {
