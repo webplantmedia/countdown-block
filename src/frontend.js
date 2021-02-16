@@ -48,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			hoursNode[0].innerHTML = hours || 0;
 			minutesNode[0].innerHTML = minutes || 0;
 			secondsNode[0].innerHTML = seconds || 0;
+
+			if ( ! countdown.classList.contains('eb-countdown-activated') ) {
+				countdown.classList.add('eb-countdown-activated')
+			}
 		};
 
 		var interval = setInterval(function () {
