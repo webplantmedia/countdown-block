@@ -14,13 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
 			var now = new Date().getTime();
 			var time = new Date(date);
 			var currentUtcOffset = time.getTimezoneOffset() * 60 * 1000;
-			var timer = new Date(time - now + currentUtcOffset);
+			var timer = Math.abs( ( time.getTime() - now ) / 1000 );
 
-			var oneDay = 24 * 60 * 60 * 1000;
-			var days = Math.round(timer / oneDay);
-			var hours = timer.getHours();
-			var minutes = timer.getMinutes();
-			var seconds = timer.getSeconds();
+			var oneDay = 86400;
+			var oneHour = 3600;
+			var oneMinute = 60;
+			var oneSecond = 1;
+
+			var days = Math.floor(timer / oneDay);
+			timer -= days * oneDay;
+			var hours = Math.floor(timer / oneHour) % 24;
+			timer -= hours * oneHour;
+			var minutes = Math.floor(timer / oneMinute) % 60;
+			timer -= minutes * oneSecond;
+			var seconds = Math.floor(timer / oneSecond) % 60;
 
 			// Get values from html
 			var daysNode = countdown.getElementsByClassName(
