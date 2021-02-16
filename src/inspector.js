@@ -125,31 +125,39 @@ const Inspector = ({ attributes, setAttributes }) => {
 			let now = new Date().getTime();
 			let currentUtcOffset = moment(date).utcOffset() * 60 * 1000;
 
-			let timer = new Date(time - now - currentUtcOffset);
+			let timer = Math.floor( ( time - now ) / 1000 );
 
 			if (time < now) {
-				setAttributes({ days: "0", hours: "0", minutes: "0", seconds: "0" });
+				setAttributes({ date, days: "0", hours: "0", minutes: "0", seconds: "0" });
 				return;
 			}
 
-			// Calculate days, hours, minutes and seconds
-			let oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * miliseconds
-			let days = Math.floor((time - now) / oneDay).toString();
-			let hours = timer.getHours().toString();
-			let minutes = timer.getMinutes().toString();
-			let seconds = timer.getSeconds().toString();
+			var oneDay = 86400;
+			var oneHour = 3600;
+			var oneMinute = 60;
+			var oneSecond = 1;
+
+			var days = Math.floor(timer / oneDay);
+			timer -= days * oneDay;
+			var hours = Math.floor(timer / oneHour) % 24;
+			timer -= hours * oneHour;
+			var minutes = Math.floor(timer / oneMinute) % 60;
+			timer -= minutes * oneMinute;
+			var seconds = Math.floor(timer / oneSecond) % 60;
 
 			setAttributes({ date, days, hours, minutes, seconds });
 		};
 
+		counter();
+
 		// Clear interval if countdown already exists
-		if (window[id]) {
+		/*if (window[id]) {
 			clearInterval(window[id]);
 		}
 
 		if (id) {
 			window[id] = setInterval(counter, 1000);
-		}
+		}*/
 	};
 
 	const yesterday = moment().subtract(1, "day");
@@ -174,7 +182,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 						dateFormat="YYYY-MM-DD-A"
 						timeFormat="h:mm A"
 						onChange={(momentObj) => onDateTimeChange(momentObj)}
-						isValidDate={valid}
 					/>
 				</BaseControl>
 			</PanelBody>

@@ -77,13 +77,22 @@ function create_block_countdown_block_init() {
 
 
 	if( ! WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/countdown' ) ) {
-    register_block_type( 'block/countdown', array(
-      'editor_script' => 'create-block-countdown-block-editor',
-	  'editor_style'  => 'create-block-countdown-block-editor',
-      'style'         => 'create-block-countdown-block',
-      'datetime_style'=> 'react-datetime-style',
-      'countdown_frontend' => 'essential-blocks-countdown-frontend',
-    ) );
-  }
+		register_block_type( 'block/countdown', array(
+			'editor_script' => 'create-block-countdown-block-editor',
+			'editor_style'  => 'create-block-countdown-block-editor',
+			'style'         => 'create-block-countdown-block',
+			'datetime_style'=> 'react-datetime-style',
+			'countdown_frontend' => 'essential-blocks-countdown-frontend',
+		) );
+	}
+
+	wp_localize_script(
+		'create-block-countdown-block-editor',
+		'create_block_countdown_block',
+		array(
+			'timezone_string' => get_option('timezone_string'),
+			'gmt_offset' => get_option('gmt_offset'),
+		)
+	);
 }
 add_action( 'init', 'create_block_countdown_block_init' );
