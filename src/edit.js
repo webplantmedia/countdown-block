@@ -10,6 +10,7 @@ import Box from "./box";
 import BoxContainer from "./box-container";
 import Inspector from "./inspector";
 import uuid from "../util/uuid";
+import "./editor.scss";
 
 class Edit extends Component {
 	componentDidMount() {
